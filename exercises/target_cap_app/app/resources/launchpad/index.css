@@ -1,0 +1,11 @@
+.templateTileClass{
+	background-size: 192px;
+	background-repeat: no-repeat;
+	background-position: center;		
+}
+.ucClass{
+	background-image: url('thumbnails/userCRUD.png');
+}
+.twClass{
+	background-image: url('thumbnails/tinyworld.png');
+}

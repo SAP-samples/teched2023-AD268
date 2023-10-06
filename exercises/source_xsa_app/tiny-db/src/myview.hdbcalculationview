@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="tinyworld.tinydb::myview" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="myview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tinyworld.tinydb::tinyf.country">
+    <resourceUri>tinyworld.tinydb::tinyf.country</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="name"/>
+      <viewAttribute id="partof_continent"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tinyworld.tinydb::tinyf.country">
+      <mapping xsi:type="Calculation:AttributeMapping" target="partof_continent" source="partof.continent"/>
+    </input>
+    <filter>(&quot;partof_continent&quot;='EUROPE' OR &quot;partof_continent&quot;='ASIA' OR &quot;partof_continent&quot;='AFRICA' OR &quot;partof_continent&quot;='NORTH AMERICA' OR &quot;partof_continent&quot;='SOUTH AMERICA' OR &quot;partof_continent&quot;='AUSTRALIA/OCEANIA' OR &quot;partof_continent&quot;='ANTARCTICA')</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="name" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="name"/>
+      <keyMapping columnObjectName="Projection_1" columnName="name"/>
+    </attribute>
+    <attribute id="partof_continent" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="partof_continent"/>
+      <keyMapping columnObjectName="Projection_1" columnName="partof_continent"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="179"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

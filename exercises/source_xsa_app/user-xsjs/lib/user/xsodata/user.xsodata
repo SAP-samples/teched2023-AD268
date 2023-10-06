@@ -1,0 +1,9 @@
+service namespace "sap.hana.democontent.epm.services" {
+   "UserData.User" as "Users"
+    create using "user.xsjs:userExit.xsjslib::my_create_after_exit";
+}
+
+
+settings {
+    metadata cache-control "max-age= 604800";
+} 

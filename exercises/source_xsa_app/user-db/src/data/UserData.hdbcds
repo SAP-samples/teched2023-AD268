@@ -1,0 +1,17 @@
+@OData.publish : true
+context UserData {
+    @Comment : 'User DB'
+    entity User {
+            @Comment : 'User ID'
+        	key UserId    : Integer;
+
+            @Comment : 'First Name'
+            FirstName : String(40);
+
+            @Comment : 'Last Name'
+            LastName  : String(40);
+
+            @Comment : 'Email'
+            Email     : String(255);
+    };
+};

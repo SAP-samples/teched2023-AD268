@@ -1,0 +1,115 @@
+_schema-version: '3.1'
+ID: techedxsaapp
+version: 1.0.0
+
+modules:
+  - name: tiny-srv
+    type: nodejs
+    path: tiny-xsjs
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 128M
+    build-parameters:
+      builder: npm-ci
+    requires:
+      - name: tiny-container-db
+      - name: techedapp_uaa
+    provides:
+      - name: tinyjs_api
+        properties:
+          service_url: '${default-url}'
+
+  - name: user-srv
+    type: nodejs
+    path: user-xsjs
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 128M
+    build-parameters:
+      builder: npm-ci
+    requires:
+      - name: user-container-db
+      - name: techedapp_uaa
+    provides:
+      - name: userjs_api
+        properties:
+          service_url: '${default-url}'
+
+  - name: app
+    type: html5
+    path: app
+    parameters:
+      memory: 256M
+    requires:
+      - name: techedapp_uaa
+      - name: tinyjs_api
+        group: destinations
+        properties:
+          name: tinyjs_be
+          url: '~{service_url}'
+          forwardAuthToken: true
+      - name: userjs_api
+        group: destinations
+        properties:
+          name: userjs_be
+          url: '~{service_url}'
+          forwardAuthToken: true
+
+  - name: tiny-db-deployer
+    type: hdb
+    path: tiny-db
+    deployed-after:
+      - user-db-deployer
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+    requires:
+      - name: tiny-container-db
+        properties:
+          TARGET_CONTAINER: ~{hdi-container-name}
+      - name: user-container-db
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: hdi-user-service
+          service: ~{the-service-name}
+
+  - name: user-db-deployer
+    type: hdb
+    path: user-db
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+    requires:
+      - name: user-container-db
+      
+resources:
+  - name: user-container-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-name: user-container-db
+      service-plan: hdi-shared
+      config:
+        database_id: 8ee195b7-1320-4c5a-9324-f029b08eb0c1
+    properties:
+      the-service-name: ${service-name}
+
+  - name: tiny-container-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+      config:
+        database_id: 8ee195b7-1320-4c5a-9324-f029b08eb0c1
+    properties:
+      hdi-container-name: ${service-name}
+
+  - name: techedapp_uaa
+    type: com.sap.xs.uaa
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: techedxsaapp-${space}
+        tenant-mode: dedicated

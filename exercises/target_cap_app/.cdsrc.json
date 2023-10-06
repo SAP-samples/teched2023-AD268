@@ -1,0 +1,45 @@
+{
+    "cds": {
+      "cov2ap" : {
+        "plugin" : true,
+        "path" : "v2"
+      },
+      "build": {
+        "target": "gen",
+        "tasks": [
+          {
+            "for": "hana",
+            "src": "db1",
+            "options": {
+              "model": [
+                "db1",
+                "db1/cds"
+              ]
+            }
+          },
+          {
+            "for": "hana",
+            "src": "db",
+            "options": {
+              "model": [
+                "db/cds",
+                "srv",
+                "app"
+              ]
+            }
+          },
+          {
+            "for": "nodejs",
+            "src": "srv",
+            "options": {
+              "model": [
+                "db",
+                "srv",
+                "app"
+              ]
+            }
+          }
+        ]
+      }
+    }
+}  

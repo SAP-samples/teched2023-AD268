@@ -1,0 +1,38 @@
+<!DOCTYPE HTML><head><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>DevXdemo</title>
+ 
+<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+id="sap-ui-bootstrap" data-sap-ui-libs="sap.ui.commons, sap.ui.table" data-sap-ui-theme="sap_bluecrystal">
+</script>
+ 
+<script src="./Util.js" > </script>
+ 
+<script>
+  var oModel = new sap.ui.model.odata.ODataModel("/v2/teched", true);
+
+
+  var oTable = new sap.ui.table.Table({ title: "Countries and Continents" , visibleRowCount: 5, id: "tinytab",
+
+              toolbar: new sap.ui.commons.Toolbar({items: [
+
+              new sap.ui.commons.Button({text: "Add Country", press:openFirstDialog})
+
+       ]})});
+
+
+  oTable.addColumn(new sap.ui.table.Column({ label: "Country Name", template: "NAME" }));
+  oTable.addColumn(new sap.ui.table.Column({ label: "Continent", template: "PARTOF_CONTINENT" }));
+
+
+  oTable.setModel(oModel); oTable.bindRows("/MYVIEW"); 
+  oTable.placeAt("content");
+    
+</script>
+</head>
+ 
+<body class='sapUiBody'> 
+<div id='content'></div> 
+	
+</body> 
+	
+</html>

@@ -1,0 +1,37 @@
+{
+"scopes": [ 
+		{ 
+			"name": "$XSAPPNAME.view", "description": "View data" 
+		},
+		{ 
+			"name": "$XSAPPNAME.create", "description": "Create data"
+		},
+		{
+			"name": "xs_authorization.read",
+			"description": "Read authorization information from UAA"
+		}, 
+		{
+			"name": "xs_authorization.write",
+			"description": "Write authorization information to UAA"
+		}
+    ],
+"role-templates": [ 
+	{
+		"name": "tinyworldView",
+		"description": "Role for viewing data",
+		"scope-references": [ "$XSAPPNAME.view" ] 
+	},
+    { 
+		"name": "tinyworldCreate",
+		"description": "Role for creating data",
+		"scope-references": [ "$XSAPPNAME.create","$XSAPPNAME.view" ]
+	},
+	{
+		"name": "Token_Exchange",
+		"description": "UAA",
+		"scope-references": [
+		  "uaa.user"
+		]
+	}
+]
+}

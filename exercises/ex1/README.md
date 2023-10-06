@@ -1,44 +1,72 @@
-# Exercise 1 - Exercise 1 Description
+# Exercise 1 - Prepare Your Development Environment
 
-In this exercise, we will create...
+In this exercise, we will guide you through the process of setting up a Cloud-based Full Stack application development environment using SAP's Business Application Studio and also connect to SAP BTP.
 
-## Exercise 1.1 Sub Exercise 1 Description
+## Exercise 1.1 - Launch SAP Business Application Studio and Create a Dev Space
 
-After completing these steps you will have created...
+The First step in this exercise is to create a dev space.
 
-1. Click here.
-<br>![](/exercises/ex1/images/01_01_0010.png)
+1. Launch the [SAP Business Application Studio](https://ad268-b6cxf9xc.ap11cf.applicationstudio.cloud.sap/index.html).
 
-2.	Insert this line of code.
-```abap
-response->set_text( |Hello World! | ). 
+2. Click on Create Dev Space.
+<br>![](/exercises/ex1/images/CreateDev.png)
+
+3. Enter the Dev Space name as AD268_(Group Number). For the kind of application, choose 'Full Stack Cloud Application' and, under Additional SAP Extensions, select 'SAP HANA Tools'.
+<br>![](/exercises/ex1/images/BAS_1.png)
+
+4. Wait until the Dev Space status changes to 'Running' and then click on the link to open it.
+<br>![](/exercises/ex1/images/BAS_2.png)
+
+## Exercise 1.2 - Clone the GitHub repository
+
+Next step in the exercise is to clone the GitHub repository
+
+1.	Click on the Navigation Menu -> Terminal -> New Terminal to open a terminal.
+<br>![](/exercises/ex1/images/New_Terminal.png)
+
+2.	Navigate to the 'projects' directory by running the below command in the terminal.
+```
+cd projects
+
 ```
 
-
-
-## Exercise 1.2 Sub Exercise 2 Description
-
-After completing these steps you will have...
-
-1.	Enter this code.
-```abap
-DATA(lt_params) = request->get_form_fields(  ).
-READ TABLE lt_params REFERENCE INTO DATA(lr_params) WITH KEY name = 'cmd'.
-  IF sy-subrc <> 0.
-    response->set_status( i_code = 400
-                     i_reason = 'Bad request').
-    RETURN.
-  ENDIF.
+3. Clone the GitHub repository using the below command.
+```
+git clone https://github.com/SAP-samples/teched2023-AD268.git
 
 ```
 
-2.	Click here.
-<br>![](/exercises/ex1/images/01_02_0010.png)
+4. A prompt will be opened at the top to enter the user credentials. Enter the Git Username and Git Password.
+<br>![](/exercises/ex1/images/git_1.png)
 
+5. Save the credentials in the dev space for the future use.
+<br>![](/exercises/ex1/images/git_2.png)
+
+6. Open the Cloned Repository by clicking on the Navigation Menu -> File -> Open Folder.
+<br>![](/exercises/ex1/images/Folder.png)
+
+7. Select the path of the newly cloned repository.
+<br>![](/exercises/ex1/images/Path.png)
+
+## Exercise 1.3 - Login to Cloud Foundry
+
+The last step of the tutorial is to Login to the Cloud Foundry Environment.
+
+1.	Open the Command palette by clicking on the Navigation Menu -> View -> Command Palette.
+<br>![](/exercises/ex1/images/Palette.png)
+
+2.	In the prompt, select 'CF: Login to Cloud Foundry'.
+<br>![](/exercises/ex1/images/CF_Login.png)
+
+3. In the Wizard, the endpoint will be selected automatically. Enter the User Credentials and select 'Sign in'.
+<br>![](/exercises/ex1/images/CF_1.png)
+
+4. Once the Sign-In is successful, select the Org and Space and Click 'Apply' to finalize the setup.
+<br>![](/exercises/ex1/images/CF_2.png)
 
 ## Summary
 
-You've now ...
+You've now successfully set up your Full Stack application development environment.
 
-Continue to - [Exercise 2 - Exercise 2 Description](../ex2/README.md)
+Continue to - [Exercise 2 - Run the Migration Script to setup the CAP application](../ex2/README.md)
 

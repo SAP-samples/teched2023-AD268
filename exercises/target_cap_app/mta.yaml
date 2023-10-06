@@ -1,0 +1,96 @@
+_schema-version: '3.1'
+ID: techedcapapp
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install
+        - npx -p @sap/cds-dk cds build --production
+modules:
+  - name: techedcapapp-srv_<UserID>
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 128M
+    build-parameters:
+      builder: npm-ci
+    requires:
+      - name: tiny-cap-container-db_<UserID>
+      - name: techedcapapp_uaa_<UserID>
+    provides:
+      - name: tinyjs_api
+        properties:
+          service_url: '${default-url}'
+  - name: techedcapapp_<UserID>
+    type: html5
+    path: app
+    parameters:
+      memory: 256M
+    requires:
+      - name: techedcapapp_uaa_<UserID>
+      - name: tinyjs_api
+        group: destinations
+        properties:
+          name: techedjs_be
+          url: '~{service_url}'
+          forwardAuthToken: true
+
+  - name: tiny-cap-db-deployer_<UserID>
+    type: hdb
+    path: gen/db
+    deployed-after:
+      - user-cap-db-deployer_<UserID>
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 128M
+    requires:
+      - name: tiny-cap-container-db_<UserID>
+        properties:
+          TARGET_CONTAINER: ~{hdi-container-name}
+      - name: user-cap-container-db_<UserID>
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: hdi-user-service
+          service: ~{the-service-name}
+  - name: user-cap-db-deployer_<UserID>
+    type: hdb
+    path: gen/db1
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 128M
+    requires:
+      - name: user-cap-container-db_<UserID>
+resources:
+  - name: user-cap-container-db_<UserID>
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-name: user-cap-container-db_<UserID>
+      service-plan: hdi-shared
+      config:
+        database_id: <Hana Cloud Database ID>
+    properties:
+      the-service-name: ${service-name}
+  - name: tiny-cap-container-db_<UserID>
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+      config:
+        database_id: <Hana Cloud Database ID>
+    properties:
+      hdi-container-name: ${service-name}
+  - name: techedcapapp_uaa_<UserID>
+    type: com.sap.xs.uaa
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: techedcapapp-${space}
+        tenant-mode: dedicated

@@ -4,36 +4,44 @@
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2022 session called Session ID - Session Title.  
+This repository contains the material for the SAP TechEd 2023 session called AD268 - Application Migration to SAP Cloud Application Programming Model.
+
 
 ## Overview
 
-This session introduces attendees to...
+In this session we learn about the migration of apps based on SAP HANA extended application services to SAP Cloud Application Programming Model and SAP HANA Cloud as a database. Get hands-on experience on how an existing extended application services–based application can be migrated to SAP Business Technology Platform using SAP Cloud Application Programming Model. Learn in-detail about how to migrate all artifacts of extended application services–based applications to SAP Cloud Application Programming Model.
 
 ## Requirements
 
-The requirements to follow the exercises in this repository are...
+The requirements to follow the exercises in this repository are
+- Basic knowledge of SAP BTP Cockpit
+- Basic knowledge of SAP XSA framework.
+- Basic knowledge of SAP CAP framework.
+- Basic knowledge of SQL and Hana Database.
 
 ## Exercises
 
-Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
-
 - [Getting Started](exercises/ex0/)
-- [Exercise 1 - First Exercise Description](exercises/ex1/)
-    - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
-    - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)
-- [Exercise 2 - Second Exercise Description](exercises/ex2/)
-    - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
-    - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
-
-  
-**OR** Link to the Tutorial Navigator for example...
-
-Start the exercises [here](https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html).
-
-**IMPORTANT**
-
-Your repo must contain the .reuse and LICENSES folder and the License section below. DO NOT REMOVE the section or folders/files. Also, remove all unused template assets(images, folders, etc) from the exercises folder. 
+- [Exercise 1 - Prepare Your Development Environment](exercises/ex1/)
+    - [Exercise 1.1 - Launch SAP Business Application Studio and Create a Dev Space](exercises/ex1#exercise-11-launch-sap-business-application-studio-and-create-a-dev-space)
+    - [Exercise 1.2 - Clone the GitHub repository](exercises/ex1#exercise-12-clone-the-github-repository)
+    - [Exercise 1.3 - Login to Cloud Foundry](exercises/ex1#exercise-13-login-to-cloud-foundry)
+- [Exercise 2 - Run the Migration Script to setup the CAP application](exercises/ex2/)
+    - [Exercise 2.1 - Prepare the migration script](exercises/ex2#exercise-21-prepare-the-migration-script)
+    - [Exercise 2.2 - Run the Script and provide the parameters](exercises/ex2#exercise-22-run-the-script-and-provide-the-parameters)
+- [Exercise 3 - Modifications in the CAP Application and Multicontainer Support](exercises/ex3/)
+    - [Exercise 3.1 - Create and Expose Facade Entities](exercises/ex3#exercise-31-create-and-expose-facade-entities)
+    - [Exercise 3.2 - Establish a link between the HDI containers](exercises/ex3#exercise-32-establish-a-link-between-the-hdi-containers)
+    - [Exercise 3.3 - Prepare the CAP application for deployment](exercises/ex3#exercise-33-prepare-the-cap-application-for-deployment)
+    - [Exercise 3.4 - Deploy the CAP application](exercises/ex3#exercise-34-deploy-the-cap-application)
+- [Exercise 4 - Manually migrate the Data from Source HDI Container to target HDI Container](exercises/ex4/)
+    - [Exercise 4.1 - Add the Databases and HDI containers in the Database Explorer](exercises/ex4#exercise-41-add-the-databases-and-hdi-containers-in-the-database-explorer)
+    - [Exercise 4.2 - Run the SQL commands](exercises/ex4#exercise-42-run-the-sql-commands)
+    - [Exercise 4.3 - Add the Role collection and Test the CAP application](exercises/ex4#exercise-43-add-the-role-collection-and-test-the-cap-application)
+- [Exercise 5 - Perform the Clean Up Operations](exercises/ex5/)
+    - [Exercise 5.1 - Clean Up in Database Explorer](exercises/ex5#exercise-51-clean-up-in-database-explorer)
+    - [Exercise 5.2 - Clean Up in Business Application Studio](exercises/ex5#exercise-52-clean-up-in-business-application-studio)
+    - [Exercise 5.3 - Clean Up in SAP BTP Subaccount Cockpit](exercises/ex5#exercise-53-clean-up-in-sap-btp-subaccount-cockpit)
 
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
