@@ -34,106 +34,106 @@ The next step of the exercise is to run the SQL commands in the console to creat
 <br>![](/exercises/ex2/images/SQL_HaaS.png)
 
 2. Next is to create a Remote source user and assign the necessary privileges in the Hana Service Database. Run the below SQL script in the console.
-```
-CREATE USER REMOTE_SOURCE_USER_TECHED_<UserID> PASSWORD Welcome1 NO FORCE_FIRST_PASSWORD_CHANGE;
+   ```
+   CREATE USER REMOTE_SOURCE_USER_TECHED_<UserID> PASSWORD Welcome1 NO FORCE_FIRST_PASSWORD_CHANGE;
 
-CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES; 
-INSERT INTO #PRIVILEGES ( PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME ) VALUES ( 'SELECT', '', 'REMOTE_SOURCE_USER_TECHED_<UserID>' ); 
-CALL _SYS_DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES('<HaaS Tinyworld schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
-DROP TABLE #PRIVILEGES; 
+   CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES; 
+   INSERT INTO #PRIVILEGES ( PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME ) VALUES ( 'SELECT', '', 'REMOTE_SOURCE_USER_TECHED_<UserID>' ); 
+   CALL _SYS_DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES('<HaaS Tinyworld schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
+   DROP TABLE #PRIVILEGES; 
 
-CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES; 
-INSERT INTO #PRIVILEGES ( PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME ) VALUES ( 'SELECT', '', 'REMOTE_SOURCE_USER_TECHED_<UserID>' ); 
-CALL _SYS_DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES('<HaaS user schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
-DROP TABLE #PRIVILEGES; 
-```
-Replace the placeholders < UserID > with Group number, < HaaS Tinyworld schema > with the schema of the tinyworld schema in the Hana Service Database and < HaaS user schema > with the schema of the user schema in the Hana Service Database which is available in the [Getting Started](../ex0/README.md) section.
+   CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES; 
+   INSERT INTO #PRIVILEGES ( PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME ) VALUES ( 'SELECT', '', 'REMOTE_SOURCE_USER_TECHED_<UserID>' ); 
+   CALL _SYS_DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES('<HaaS user schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
+   DROP TABLE #PRIVILEGES; 
+   ```
+   Replace the placeholders < UserID > with Group number, < HaaS Tinyworld schema > with the schema of the tinyworld schema in the Hana Service Database and < HaaS user schema > with the schema of the user schema in the Hana Service Database which is available in the [Getting Started](../ex0/README.md) section.
 
 3.	Next right Click on the HanaCloud Database and Select Open SQL Console.
 <br>![](/exercises/ex2/images/SQL_HC.png)
 
 4. Assign the privileges in the Hana Cloud Database by running the below SQL script in the second console.
-```
--- SELECT CONTAINER_GROUP_NAME FROM _SYS_DI.M_ALL_CONTAINERS WHERE CONTAINER_NAME = '<Hana Cloud Tinyworld schema>';
+   ```
+   -- SELECT CONTAINER_GROUP_NAME FROM _SYS_DI.M_ALL_CONTAINERS WHERE CONTAINER_NAME = '<Hana Cloud Tinyworld schema>';
 
--- SELECT CONTAINER_GROUP_NAME FROM _SYS_DI.M_ALL_CONTAINERS WHERE CONTAINER_NAME = '<Hana Cloud user schema>';
+   -- SELECT CONTAINER_GROUP_NAME FROM _SYS_DI.M_ALL_CONTAINERS WHERE CONTAINER_NAME = '<Hana Cloud user schema>';
 
-CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
-INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_GROUP_ADMIN_PRIVILEGES; 
-CALL _SYS_DI.GRANT_CONTAINER_GROUP_API_PRIVILEGES('BROKER_CG', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
-DROP TABLE #PRIVILEGES;  
+   CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
+   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_GROUP_ADMIN_PRIVILEGES; 
+   CALL _SYS_DI.GRANT_CONTAINER_GROUP_API_PRIVILEGES('BROKER_CG', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
+   DROP TABLE #PRIVILEGES;  
 
-CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
-INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES; 
-CALL _SYS_DI#BROKER_CG.GRANT_CONTAINER_API_PRIVILEGES('<Hana Cloud Tinyworld schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
-DROP TABLE #PRIVILEGES; 
+   CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
+   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES; 
+   CALL _SYS_DI#BROKER_CG.GRANT_CONTAINER_API_PRIVILEGES('<Hana Cloud Tinyworld schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
+   DROP TABLE #PRIVILEGES; 
 
-CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
-INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES; 
-CALL _SYS_DI#BROKER_CG.GRANT_CONTAINER_API_PRIVILEGES('<Hana Cloud user schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
-DROP TABLE #PRIVILEGES;
+   CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
+   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES; 
+   CALL _SYS_DI#BROKER_CG.GRANT_CONTAINER_API_PRIVILEGES('<Hana Cloud user schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
+   DROP TABLE #PRIVILEGES;
 
-CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES;
-INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('CREATE ANY', '', 'DBADMIN'); 
-INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('SELECT', '', 'DBADMIN');
-INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('INSERT', '', 'DBADMIN');
-INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('DELETE', '', 'DBADMIN');
-CALL <Hana Cloud Tinyworld schema>#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (#PRIVILEGES, _SYS_DI.T_NO_PARAMETERS,?,?,?); 
-DROP TABLE #PRIVILEGES; 
+   CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES;
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('CREATE ANY', '', 'DBADMIN'); 
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('SELECT', '', 'DBADMIN');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('INSERT', '', 'DBADMIN');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('DELETE', '', 'DBADMIN');
+   CALL <Hana Cloud Tinyworld schema>#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (#PRIVILEGES, _SYS_DI.T_NO_PARAMETERS,?,?,?); 
+   DROP TABLE #PRIVILEGES; 
 
-CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES;
-INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('CREATE ANY', '', 'DBADMIN'); 
-INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('SELECT', '', 'DBADMIN');
-INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('INSERT', '', 'DBADMIN');
-INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('DELETE', '', 'DBADMIN');
-CALL <Hana Cloud user schema>#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (#PRIVILEGES, _SYS_DI.T_NO_PARAMETERS,?,?,?); 
-DROP TABLE #PRIVILEGES;
-```
-Replace the placeholders < Hana Cloud Tinyworld schema > with the value of the tinyworld schema and < Hana Cloud user schema > with the value of the user schema copied in the previous step.
+   CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES;
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('CREATE ANY', '', 'DBADMIN'); 
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('SELECT', '', 'DBADMIN');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('INSERT', '', 'DBADMIN');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('DELETE', '', 'DBADMIN');
+   CALL <Hana Cloud user schema>#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (#PRIVILEGES, _SYS_DI.T_NO_PARAMETERS,?,?,?); 
+   DROP TABLE #PRIVILEGES;
+   ```
+   Replace the placeholders < Hana Cloud Tinyworld schema > with the value of the tinyworld schema and < Hana Cloud user schema > with the value of the user schema copied in the previous step.
 
 5. Next, In the Hana Cloud console, run the below SQL script to create the Remote source, Virtual tables and insert the data through the virtual tables.
-```
-CREATE REMOTE SOURCE REMOTE_SOURCE_TECHED_<UserID> ADAPTER hanaodbc
-CONFIGURATION 'ServerNode=<zeus.hana.prod.ap-southeast-1.whitney.dbaas.ondemand.com:22325- Hana Service/Source host:port>;driver=libodbcHDB.so;encrypt=yes;sslValidateCertificate=False' WITH CREDENTIAL TYPE 'PASSWORD' using 'user=REMOTE_SOURCE_USER_TECHED_<UserID>;password=Welcome1';  
+   ```
+   CREATE REMOTE SOURCE REMOTE_SOURCE_TECHED_<UserID> ADAPTER hanaodbc
+   CONFIGURATION 'ServerNode=<zeus.hana.prod.ap-southeast-1.whitney.dbaas.ondemand.com:22325- Hana Service/Source host:port>;driver=libodbcHDB.so;encrypt=yes;sslValidateCertificate=False' WITH CREDENTIAL TYPE 'PASSWORD' using 'user=REMOTE_SOURCE_USER_TECHED_<UserID>;password=Welcome1';  
 
-/*Tiny World*/
-CREATE VIRTUAL TABLE "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_COUNTRY_VIR" at "REMOTE_SOURCE_TECHED_<UserID>"."NULL"."<HaaS Tinyworld schema>"."tinyworld.tinydb::tinyf.country";
-CREATE VIRTUAL TABLE "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_WORLD_VIR" at "REMOTE_SOURCE_TECHED_<UserID>"."NULL"."<HaaS Tinyworld schema>"."tinyworld.tinydb::tinyf.world";
+   /*Tiny World*/
+   CREATE VIRTUAL TABLE "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_COUNTRY_VIR" at "REMOTE_SOURCE_TECHED_<UserID>"."NULL"."<HaaS Tinyworld schema>"."tinyworld.tinydb::tinyf.country";
+   CREATE VIRTUAL TABLE "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_WORLD_VIR" at "REMOTE_SOURCE_TECHED_<UserID>"."NULL"."<HaaS Tinyworld schema>"."tinyworld.tinydb::tinyf.world";
 
-/*User*/
-CREATE VIRTUAL TABLE "<Hana Cloud user schema>"."USERDATA_USER_VIR" at "REMOTE_SOURCE_TECHED_<UserID>"."NULL"."<HaaS user schema>"."UserData.User"; 
+   /*User*/
+   CREATE VIRTUAL TABLE "<Hana Cloud user schema>"."USERDATA_USER_VIR" at "REMOTE_SOURCE_TECHED_<UserID>"."NULL"."<HaaS user schema>"."UserData.User"; 
 
 
-INSERT INTO "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_COUNTRY"( 
-   "NAME", 
-   "PARTOF_CONTINENT"
-) 
-SELECT 
-   "name", 
-   "partof.continent"
-FROM "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_COUNTRY_VIR"; 
+   INSERT INTO "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_COUNTRY"( 
+      "NAME", 
+      "PARTOF_CONTINENT"
+   ) 
+   SELECT 
+      "name", 
+      "partof.continent"
+   FROM "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_COUNTRY_VIR"; 
 
-INSERT INTO "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_WORLD"( 
-   "CONTINENT"
-) 
-SELECT 
-   "continent"
-FROM "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_WORLD_VIR"; 
+   INSERT INTO "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_WORLD"( 
+      "CONTINENT"
+   ) 
+   SELECT 
+      "continent"
+   FROM "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_WORLD_VIR"; 
 
-INSERT INTO "<Hana Cloud user schema>"."USERDATA_USER"( 
-   "USERID",
-   "FIRSTNAME",
-   "LASTNAME",
-   "EMAIL"
-) 
-SELECT 
-   "UserId",
-   "FirstName",
-   "LastName",
-   "Email"
-FROM "<Hana Cloud user schema>"."USERDATA_USER_VIR"; 
-```
-Make sure to Replace the placeholders with their respective values before you run the script.
+   INSERT INTO "<Hana Cloud user schema>"."USERDATA_USER"( 
+      "USERID",
+      "FIRSTNAME",
+      "LASTNAME",
+      "EMAIL"
+   ) 
+   SELECT 
+      "UserId",
+      "FirstName",
+      "LastName",
+      "Email"
+   FROM "<Hana Cloud user schema>"."USERDATA_USER_VIR"; 
+   ```
+   Make sure to Replace the placeholders with their respective values before you run the script.
 
 ## Exercise 4.3 - Add the Role collection and Test the CAP application
 
@@ -155,9 +155,9 @@ The last step of the exercise is to create the role collection, assign it to you
 6. Now in the role collection edit page, add your user under the Users section (Select Default identifier as the IDP) and click on Save.
 
 7. Go back to the business application studio and run the below command to fetch the application URL.
-```
-cf a
-```
+   ```
+   cf a
+   ```
 
 8. Copy and Launch the Application URL in a new browser tab and Test the application.
 <br>![](/exercises/ex4/images/CAPApp.png)

@@ -21,20 +21,20 @@ The First step in this exercise is to create a dev space.
 
 Next step in the exercise is to clone the GitHub repository
 
-1.	Click on the Navigation Menu -> Terminal -> New Terminal to open a terminal.
+1. Click on the Navigation Menu -> Terminal -> New Terminal to open a terminal.
 <br>![](/exercises/ex1/images/New_Terminal.png)
 
-2.	Navigate to the 'projects' directory by running the below command in the terminal.
-```
-cd projects
+2. Navigate to the 'projects' directory by running the below command in the terminal.
+   ```
+   cd projects
 
-```
+   ```
 
 3. Clone the GitHub repository using the below command.
-```
-git clone https://github.com/SAP-samples/teched2023-AD268.git
+   ```
+   git clone https://github.com/SAP-samples/teched2023-AD268.git
 
-```
+   ```
 
 4. A prompt will be opened at the top to enter the user credentials. Enter the Git Username and Git Password.
 <br>![](/exercises/ex1/images/git_1.png)
@@ -52,10 +52,10 @@ git clone https://github.com/SAP-samples/teched2023-AD268.git
 
 The last step of the tutorial is to Login to the Cloud Foundry Environment.
 
-1.	Open the Command palette by clicking on the Navigation Menu -> View -> Command Palette.
+1. Open the Command palette by clicking on the Navigation Menu -> View -> Command Palette.
 <br>![](/exercises/ex1/images/Palette.png)
 
-2.	In the prompt, select 'CF: Login to Cloud Foundry'.
+2. In the prompt, select 'CF: Login to Cloud Foundry'.
 <br>![](/exercises/ex1/images/CF_Login.png)
 
 3. In the Wizard, the endpoint will be selected automatically. Enter the User Credentials and select 'Sign in'.

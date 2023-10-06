@@ -12,26 +12,26 @@ The First step of the exercise is to prepare the migration script by performing 
 <br>![](/exercises/ex2/images/Terminal.png)
 
 2. Install the cds formatter globally with the command
-```
-npm i -g @sap/cds-lsp
-```
+   ```
+   npm i -g @sap/cds-lsp
+   ```
 
-3.	Navigate to the 'migration-script' Directory under exercises.
+3. Navigate to the 'migration-script' Directory under exercises.
 <br>![](/exercises/ex2/images/migration.png)
 
 4. Now that you're in the 'migration-script' directory, run the below command to install the necessary Node modules.
-```
-npm install
-```
+   ```
+   npm install
+   ```
 
 ## Exercise 2.2 - Run the Script and provide the parameters
 
 The next step of the exercise is to execute the script and pass the necessary parameters
 
-1.	From the 'migration-script' directory, run the below command to execute the script
-```
-npm run start
-```
+1. From the 'migration-script' directory, run the below command to execute the script
+   ```
+   npm run start
+   ```
 
 2. After running the script, you should be prompted to provide parameters. These parameters will be utilized to generate the target CAP application with modified content.
 <br>![](/exercises/ex2/images/parameters.png)
