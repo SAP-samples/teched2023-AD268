@@ -1,8 +1,0 @@
-{
-	"{{fullname}}": {
-		"target": {
-			"schema.configure": "{{dataContainer}}/schema",
-			"object": "{{fullname}}"
-		}
-	}
-}
