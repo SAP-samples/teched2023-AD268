@@ -52,17 +52,19 @@ Next step in the exercise is to clone the GitHub repository
 
 The last step of the tutorial is to Login to the Cloud Foundry Environment.
 
-1. Open the Command palette by clicking on the Navigation Menu -> View -> Command Palette.
-<br>![](/exercises/ex1/images/Palette.png)
+1. Click on the Navigation Menu -> Terminal -> New Terminal to open a new terminal.
+<br>![](/exercises/ex1/images/New_Terminal.png)
 
-2. In the prompt, select 'CF: Login to Cloud Foundry'.
+2. Run the below command in the opened terminal
+   ```
+   cf login -a https://api.cf.ap11.hana.ondemand.com --origin tdct3ched1-platform
+   ```
+
+3. Enter the User Email and Password.
+
+4. The Target Org will be automatically selected as `SAP-TechEd-2023_ad268-b6cxf9xc`. Select the Target Space created for the User.
+
 <br>![](/exercises/ex1/images/CF_Login.png)
-
-3. In the Wizard, the endpoint will be selected automatically. Enter the User Credentials and select 'Sign in'.
-<br>![](/exercises/ex1/images/CF_1.png)
-
-4. Once the Sign-In is successful, select the Org and Space and Click 'Apply' to finalize the setup.
-<br>![](/exercises/ex1/images/CF_2.png)
 
 ## Summary
 

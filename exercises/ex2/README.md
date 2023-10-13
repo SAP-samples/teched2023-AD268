@@ -13,13 +13,18 @@ The First step of the exercise is to prepare the migration script by performing 
 
 2. Install the cds formatter globally with the command
    ```
-   npm i -g @sap/cds-lsp
+   npm install -g @sap/cds-lsp
    ```
 
-3. Navigate to the 'migration-script' Directory under exercises.
+3. Install the cds development kit globally with the command
+   ```
+   npm install -g @sap/cds-dk
+   ```
+
+4. Navigate to the 'migration-script' Directory under exercises.
 <br>![](/exercises/ex2/images/migration.png)
 
-4. Now that you're in the 'migration-script' directory, run the below command to install the necessary Node modules.
+5. Now that you're in the 'migration-script' directory, run the below command to install the necessary Node modules.
    ```
    npm install
    ```
