@@ -94,10 +94,10 @@ The Second step of the exercise is to create a synonym and roles to establish a 
    {
     "hdi-user-service": {
       "object_owner": {
-        "container_roles":["userG#"]
+        "container_roles":["USERG#"]
       },
       "application_user": {
-        "container_roles":["user"]
+        "container_roles":["USER"]
       }
     } 
    }
@@ -107,7 +107,7 @@ The Second step of the exercise is to create a synonym and roles to establish a 
    ```
    {
 	  "role": {
-	    "name": "user",
+	    "name": "USER",
 	    "schema_privileges": [
 		    {
 		      "privileges": [
@@ -155,7 +155,7 @@ The Second step of the exercise is to create a synonym and roles to establish a 
    ```
    {
     "role": {
-      "name": "userG#",
+      "name": "USERG#",
       "schema_privileges": [
         {
           "privileges": [
@@ -291,17 +291,18 @@ Again we have already done the modifications for this demo application. So delet
 ## Exercise 3.4 - Deploy the CAP application
 The last step of this exercise is to deploy the CAP application. This is an important steps as it creates empty tables in the HDI container which is required for the next exercise.
 
-1. Build the Application with the below command
+1. Navigate to the root folder of the CAP Application.
+2. Build the Application with the below command
    ```
    mbt build -p=cf
    ```
 
-2. Navigate to the mta_archives directory
+3. Navigate to the mta_archives directory
    ```
    cd mta_archives
    ```
 
-3. Deploy the CAP application
+4. Deploy the CAP application
    ```
    cf deploy <Generated MTAR>.mtar
    ```
