@@ -282,7 +282,7 @@ Ensure to replace the placeholder < UserID > with your Group number and < Hana C
 So delete the current srv folder and copy this [srv](../target_cap_app/srv/) folder to the root folder of the project.
 
 6. When it comes to application layer, Major changes are not needed, we just need to update the routes according to the service defined to access the api endpoints. For example some of the changes in our case,
-- `/country/country.xsjs` should be replaced by `/teched/createcountry` in app/resources/tiny-ui/Util.js file.
+- `/country/country.xsjs` should be replaced by `/v2/teched/createcountry` in app/resources/tiny-ui/Util.js file.
 - `/user/xsodata/user.xsodata/Users` should be replaced by `/teched/Users` in app/resources/user-ui/view/usercrud.controller.js file.
 Again we have already done the modifications for this demo application. So delete the current app folder and copy this [app](../target_cap_app/app/) folder to the root folder of the project.
 
