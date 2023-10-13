@@ -63,7 +63,6 @@ The last step of the tutorial is to Login to the Cloud Foundry Environment.
 3. Enter the User Email and Password.
 
 4. The Target Org will be automatically selected as `SAP-TechEd-2023_ad268-b6cxf9xc`. Select the Target Space created for the User.
-
 <br>![](/exercises/ex1/images/CF_Login.png)
 
 ## Summary
