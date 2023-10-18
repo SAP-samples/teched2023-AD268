@@ -8,13 +8,19 @@ The First step in this exercise is to create a dev space.
 
 1. Launch the [SAP Business Application Studio](https://ad268-b6cxf9xc.ap11cf.applicationstudio.cloud.sap/index.html).
 
-2. Click on Create Dev Space.
+2. Select the link `tdct3ched1.accounts.ondemand.com` which is a Custom IDP.
+<br>![](/exercises/ex1/images/IDP.png)
+
+3. Enter the User Credentials and Click on Continue.
+<br>![](/exercises/ex1/images/SignIn.png)
+
+4. Click on Create Dev Space.
 <br>![](/exercises/ex1/images/CreateDev.png)
 
-3. Enter the Dev Space name as AD268_(Group Number). For the kind of application, choose 'Full Stack Cloud Application' and, under Additional SAP Extensions, select 'SAP HANA Tools'.
+5. Enter the Dev Space name as AD268_(Group Number). For the kind of application, choose 'Full Stack Cloud Application' and, under Additional SAP Extensions, select 'SAP HANA Tools'.
 <br>![](/exercises/ex1/images/BAS_1.png)
 
-4. Wait until the Dev Space status changes to 'Running' and then click on the link to open it.
+6. Wait until the Dev Space status changes to 'Running' and then click on the link to open it.
 <br>![](/exercises/ex1/images/BAS_2.png)
 
 ## Exercise 1.2 - Clone the GitHub repository

@@ -8,22 +8,25 @@ The First step of the exercise is to add the Databases and HDI containers in the
 
 1. Launch the [Database Explorer](https://hana-cockpit.cfapps.ap11.hana.ondemand.com/hrtt/sap/hana/cst/catalog/cockpit-index.html).
 
-2. Click on + button. Under Cockpit Database, select the first Database, Uncheck the 'Use credentials from cockpit' option. Change the Display name to 'HanaService'. Enter the SYSTEM username and password.
-<br>![](/exercises/ex4/images/HaaS.png)
+2. Enter `tdct3ched1-platform` and Select the alternate IDP.
+<br>![](/exercises/ex4/images/DBIDP.png)
 
-3. Click on + button again. Under Cockpit Database, select the second Database, Uncheck the 'Use credentials from cockpit' option. Change the Display name to 'HanaCloud'. Enter the DBADMIN username and password.
-<br>![](/exercises/ex4/images/HanaCloud.png)
+3. Click on + button. Select the Instance Type as `SAP HANA Database`. Enter the Host as `zeus.hana.prod.ap-southeast-1.whitney.dbaas.ondemand.com`, Select the Identifier as Port number and enter the value `22325` for SAP Hana Service Database. Enter the SAP Hana Service Database username and password. Slect the checkbox for `Save password (stored in the SAP HANA secure store)` and `Connect to the database securely using TLS/SSL (prevents data eavesdropping)` and Uncheck the `Verify the server's certificate using the trusted certificate below` checkbox. Change the Display name to 'HanaService' and Click on OK.
+<br>![](/exercises/ex4/images/HaaSDB.png)
 
-4. Click on + button, In the dropdown select HDI Container. Select your respective Org and Space. Select the First HDI container and Click on OK.
+4. Click on + button again. Select the Instance Type as `SAP HANA Database`. Enter the Host as `aff1e6fd-3b13-4882-8c68-4fc9077e9976.hana.prod-ap11.hanacloud.ondemand.com`, Select the Identifier as Port number and enter the value `443` for SAP Hana Cloud Database. Enter the SAP Hana Cloud Database username and password. Slect the checkbox for `Save password (stored in the SAP HANA secure store)` and `Connect to the database securely using TLS/SSL (prevents data eavesdropping)` and Uncheck the `Verify the server's certificate using the trusted certificate below` checkbox. Change the Display name to 'HanaCloud' and Click on OK.
+<br>![](/exercises/ex4/images/HanaCloudDB.png)
+
+5. Click on + button, In the dropdown select HDI Container. Select your respective Org and Space. Select the First HDI container and Click on OK.
 <br>![](/exercises/ex4/images/HDI.png)
 
-5. Repeat the steps for the second HDI container. At the end, Your database explorer should have these.
+6. Repeat the steps for the second HDI container. At the end, Your database explorer should have these.
 <br>![](/exercises/ex4/images/EndResult.png)
 
-6. Expand the tiny-cap-container and Click on Tables. Open any one table by Double clicking on it. You should see the schema value on the right. Copy it.
+7. Expand the tiny-cap-container and Click on Tables. Open any one table by Double clicking on it. You should see the schema value on the right. Copy it.
 <br>![](/exercises/ex4/images/Tiny.png)
 
-7. Repeat the same for user-cap-container and copy the schema value.
+8. Repeat the same for user-cap-container and copy the schema value.
 <br>![](/exercises/ex4/images/User.png)
 
 ## Exercise 4.2 - Run the SQL commands
@@ -59,33 +62,33 @@ The next step of the exercise is to run the SQL commands in the console to creat
    -- SELECT CONTAINER_GROUP_NAME FROM _SYS_DI.M_ALL_CONTAINERS WHERE CONTAINER_NAME = '<Hana Cloud user schema>';
 
    CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
-   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_GROUP_ADMIN_PRIVILEGES; 
+   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMINTEST', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_GROUP_ADMIN_PRIVILEGES; 
    CALL _SYS_DI.GRANT_CONTAINER_GROUP_API_PRIVILEGES('BROKER_CG', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
    DROP TABLE #PRIVILEGES;  
 
    CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
-   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES; 
+   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMINTEST', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES; 
    CALL _SYS_DI#BROKER_CG.GRANT_CONTAINER_API_PRIVILEGES('<Hana Cloud Tinyworld schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
    DROP TABLE #PRIVILEGES; 
 
    CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
-   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMIN', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES; 
+   INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMINTEST', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES; 
    CALL _SYS_DI#BROKER_CG.GRANT_CONTAINER_API_PRIVILEGES('<Hana Cloud user schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
    DROP TABLE #PRIVILEGES;
 
    CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES;
-   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('CREATE ANY', '', 'DBADMIN'); 
-   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('SELECT', '', 'DBADMIN');
-   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('INSERT', '', 'DBADMIN');
-   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('DELETE', '', 'DBADMIN');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('CREATE ANY', '', 'DBADMINTEST'); 
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('SELECT', '', 'DBADMINTEST');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('INSERT', '', 'DBADMINTEST');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('DELETE', '', 'DBADMINTEST');
    CALL <Hana Cloud Tinyworld schema>#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (#PRIVILEGES, _SYS_DI.T_NO_PARAMETERS,?,?,?); 
    DROP TABLE #PRIVILEGES; 
 
    CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_SCHEMA_PRIVILEGES;
-   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('CREATE ANY', '', 'DBADMIN'); 
-   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('SELECT', '', 'DBADMIN');
-   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('INSERT', '', 'DBADMIN');
-   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('DELETE', '', 'DBADMIN');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('CREATE ANY', '', 'DBADMINTEST'); 
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('SELECT', '', 'DBADMINTEST');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('INSERT', '', 'DBADMINTEST');
+   INSERT INTO #PRIVILEGES (PRIVILEGE_NAME, PRINCIPAL_SCHEMA_NAME, PRINCIPAL_NAME) VALUES ('DELETE', '', 'DBADMINTEST');
    CALL <Hana Cloud user schema>#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (#PRIVILEGES, _SYS_DI.T_NO_PARAMETERS,?,?,?); 
    DROP TABLE #PRIVILEGES;
    ```
