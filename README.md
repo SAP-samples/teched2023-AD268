@@ -14,10 +14,10 @@ In this session we learn about the migration of apps based on SAP HANA extended 
 ## Requirements
 
 The requirements to follow the exercises in this repository are
-- Basic knowledge of SAP BTP Cockpit
-- Basic knowledge of SAP XSA framework.
-- Basic knowledge of SAP CAP framework.
-- Basic knowledge of SQL and Hana Database.
+- Basic knowledge of [SAP BTP Cockpit](https://help.sap.com/docs/btp?locale=en-US).
+- Basic knowledge of [SAP XSA framework](https://help.sap.com/docs/SAP_HANA_PLATFORM/4505d0bdaf4948449b7f7379d24d0f0d/df19a03dc07e4ba19db4e0006c1da429.html).
+- Basic knowledge of [SAP CAP framework](https://cap.cloud.sap/docs/).
+- Basic knowledge of [SQL](https://help.sap.com/docs/SAP_HANA_PLATFORM/4fe29514fd584807ac9f2a04f6754767/20ff532c751910148657c32fe3431a9f.html) and [Hana Database](https://help.sap.com/docs/SAP_HANA_PLATFORM?locale=en-US).
 
 ## Exercises
 
