@@ -10,6 +10,7 @@ service TechedService @(requires: 'authenticated-user') @(path: '/teched') {
         IM_CONTINENT : String;
     };
     entity country as projection on tw.country;
+    entity tinyf_world as projection on tw.world;
     @(requires: 'create')
     action createcountry(ValueFields : valuefields )returns String;
 }

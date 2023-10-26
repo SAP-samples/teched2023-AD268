@@ -21,10 +21,10 @@ The First step of the exercise is to prepare the migration script by performing 
    npm install -g @sap/cds-dk
    ```
 
-4. Navigate to the 'migration-script' Directory under exercises.
+4. Navigate to the `migration-script` Directory under exercises.
 <br>![](/exercises/ex2/images/migration.png)
 
-5. Now that you're in the 'migration-script' directory, run the below command to install the necessary Node modules.
+5. Now that you're in the `migration-script` directory, run the below command to install the necessary Node modules.
    ```
    npm install
    ```
@@ -33,12 +33,20 @@ The First step of the exercise is to prepare the migration script by performing 
 
 The next step of the exercise is to execute the script and pass the necessary parameters
 
-1. From the 'migration-script' directory, run the below command to execute the script
+1. From the `migration-script` directory, run the below command to execute the script
    ```
    npm run start
    ```
 
 2. After running the script, you should be prompted to provide parameters. These parameters will be utilized to generate the target CAP application with modified content.
+
+   Parameters required here are:
+   - **CAP Application**: This is the path of the CAP application folder. A new folder can be created in the `projects` folder and the path of this folder can be passed here. (e.g. `/home/user/projects/cap_app`)
+   - **Source XSA Application**: This is the path of the Source XSA application folder.
+   - **Container Number**: This is the number of the containers in the project.
+   - **Container Folder**: Based on the number of containers, we have to pass the folder names of these containers.
+   - **App Module Folder**: This is the name of the app module in the source XSA application.
+
 <br>![](/exercises/ex2/images/parameters.png)
 
 ## Summary

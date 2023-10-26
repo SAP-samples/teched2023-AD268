@@ -50,17 +50,13 @@ The next step of the exercise is to run the SQL commands in the console to creat
    CALL _SYS_DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES('<HaaS user schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
    DROP TABLE #PRIVILEGES; 
    ```
-   Replace the placeholders < UserID > with Group number, < HaaS Tinyworld schema > with the schema of the tinyworld schema in the Hana Service Database and < HaaS user schema > with the schema of the user schema in the Hana Service Database which is available in the [Getting Started](../ex0/README.md) section.
+   Replace the placeholders ` < UserID > ` with Group number, ` < HaaS Tinyworld schema > ` with the schema of the tinyworld schema in the Hana Service Database and ` < HaaS user schema > ` with the schema of the user schema in the Hana Service Database which is available in the [Getting Started](../ex0/README.md) section.
 
 3.	Next right Click on the HanaCloud Database and Select Open SQL Console.
 <br>![](/exercises/ex2/images/SQL_HC.png)
 
 4. Assign the privileges in the Hana Cloud Database by running the below SQL script in the second console.
    ```
-   -- SELECT CONTAINER_GROUP_NAME FROM _SYS_DI.M_ALL_CONTAINERS WHERE CONTAINER_NAME = '<Hana Cloud Tinyworld schema>';
-
-   -- SELECT CONTAINER_GROUP_NAME FROM _SYS_DI.M_ALL_CONTAINERS WHERE CONTAINER_NAME = '<Hana Cloud user schema>';
-
    CREATE LOCAL TEMPORARY COLUMN TABLE #PRIVILEGES LIKE _SYS_DI.TT_API_PRIVILEGES; 
    INSERT INTO #PRIVILEGES (PRINCIPAL_NAME, PRIVILEGE_NAME, OBJECT_NAME) SELECT 'DBADMINTEST', PRIVILEGE_NAME, OBJECT_NAME FROM _SYS_DI.T_DEFAULT_CONTAINER_GROUP_ADMIN_PRIVILEGES; 
    CALL _SYS_DI.GRANT_CONTAINER_GROUP_API_PRIVILEGES('BROKER_CG', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
@@ -92,12 +88,12 @@ The next step of the exercise is to run the SQL commands in the console to creat
    CALL <Hana Cloud user schema>#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (#PRIVILEGES, _SYS_DI.T_NO_PARAMETERS,?,?,?); 
    DROP TABLE #PRIVILEGES;
    ```
-   Replace the placeholders < Hana Cloud Tinyworld schema > with the value of the tinyworld schema and < Hana Cloud user schema > with the value of the user schema copied in the previous step.
+   Replace the placeholders ` < Hana Cloud Tinyworld schema > ` with the value of the tinyworld schema and ` < Hana Cloud user schema > ` with the value of the user schema copied in the previous step.
 
 5. Next, In the Hana Cloud console, run the below SQL script to create the Remote source, Virtual tables and insert the data through the virtual tables.
    ```
    CREATE REMOTE SOURCE REMOTE_SOURCE_TECHED_<UserID> ADAPTER hanaodbc
-   CONFIGURATION 'ServerNode=<zeus.hana.prod.ap-southeast-1.whitney.dbaas.ondemand.com:22325- Hana Service/Source host:port>;driver=libodbcHDB.so;encrypt=yes;sslValidateCertificate=False' WITH CREDENTIAL TYPE 'PASSWORD' using 'user=REMOTE_SOURCE_USER_TECHED_<UserID>;password=Welcome1';  
+   CONFIGURATION 'ServerNode=zeus.hana.prod.ap-southeast-1.whitney.dbaas.ondemand.com:22325;driver=libodbcHDB.so;encrypt=yes;sslValidateCertificate=False' WITH CREDENTIAL TYPE 'PASSWORD' using 'user=REMOTE_SOURCE_USER_TECHED_<UserID>;password=Welcome1';  
 
    /*Tiny World*/
    CREATE VIRTUAL TABLE "<Hana Cloud Tinyworld schema>"."TINYWORLD_TINYDB_TINYF_COUNTRY_VIR" at "REMOTE_SOURCE_TECHED_<UserID>"."NULL"."<HaaS Tinyworld schema>"."tinyworld.tinydb::tinyf.country";
@@ -144,7 +140,7 @@ The last step of the exercise is to create the role collection, assign it to you
 
 1. In the [SAP BTP Subaccount](https://emea.cockpit.btp.cloud.sap/cockpit/#/globalaccount/e2a835b0-3011-4c79-818a-d7767c4627cd/subaccount/97396e46-9113-478b-94de-3bc4a08ecb60/subaccountoverview), Click on 'Role Collections' under Security on the left side.
 
-2. Click on the + Button, Enter name as Target_CAP_< Group Number > and any description and Click on Create.
+2. Click on the + Button, Enter name as ` Target_CAP_< Group Number > ` and any description and Click on Create.
 <br>![](/exercises/ex4/images/Role1.png)
 
 3. Click on the created role collection to navigate to the details page and click on Edit.
@@ -152,10 +148,11 @@ The last step of the exercise is to create the role collection, assign it to you
 
 4. Click on the value help button for the Role name under Roles section. 
 
-5. In the pop-up, Application Identifier dropdown, select the identifier for the deployed application which starts with techedcapapp. Select all the filtered roles and click on Add.
+5. In the pop-up, Application Identifier dropdown, select the identifier for the deployed application which starts with techedcapapp followed by your space name. Select all the filtered roles and click on Add.
 <br>![](/exercises/ex4/images/Role3.png)
 
-6. Now in the role collection edit page, add your user under the Users section (Select Default identifier as the IDP) and click on Save.
+6. Now in the role collection edit page, add your User ID (e.g. ad268-001@education.cloud.sap) under the Users section (`tdct3ched1.accounts.ondemand.com` will be selected automatically as the IDP) and click on Save.
+<br>![](/exercises/ex4/images/Role4.png)
 
 7. Go back to the business application studio and run the below command to fetch the application URL.
    ```

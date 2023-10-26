@@ -68,16 +68,18 @@ As a First step in this exercise, Run SQL commands in the Database explorer to d
 
 In this step, we will undeploy the mta application and delete the Business Application Studio Dev space.
 
-1. In the Business Application studio terminal, Run the below command to get the mta id.
+1. In the Business Application studio terminal, Run the below command to get the mta id of the CAP application.
    ```
    cf mtas
    ```
+
+   **Note**: Make sure to copy only the mta id of the CAP application deployed by you.
 
 2. Run the below command to undeploy the mta application and to delete all the service instance and keys associated with the application. 
    ```
    cf undeploy < mta id > --delete-service-keys --delete-services
    ```
-   Replace < mta id > with the value copied in the previous step.
+   Replace ` < mta id > ` with the value copied in the previous step.
 
 3. Remove the workspace id from the Business application studio URL in the browser and press Enter to come out of the Dev space.
 <br>![](/exercises/ex2/images/DevId.png)

@@ -24,7 +24,7 @@ The requirements to follow the exercises in this repository are
 - [Getting Started](exercises/ex0/)
 - [Exercise 1 - Prepare Your Development Environment](exercises/ex1/)
     - [Exercise 1.1 - Launch SAP Business Application Studio and Create a Dev Space](exercises/ex1#exercise-11---launch-sap-business-application-studio-and-create-a-dev-space)
-    - [Exercise 1.2 - Clone the GitHub repository](exercises/ex1#exercise-12---clone-the-github-repository)
+    - [Exercise 1.2 - Import the Project](exercises/ex1#exercise-12---import-the-project)
     - [Exercise 1.3 - Login to Cloud Foundry](exercises/ex1#exercise-13---login-to-cloud-foundry)
 - [Exercise 2 - Run the Migration Script to setup the CAP application](exercises/ex2/)
     - [Exercise 2.1 - Prepare the migration script](exercises/ex2#exercise-21---prepare-the-migration-script)

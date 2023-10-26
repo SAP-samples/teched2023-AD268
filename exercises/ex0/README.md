@@ -31,7 +31,7 @@ Along with the Database GUID's you would also need Additional information like t
 | User | 48D43D241477427DA80761D0C5F74486 |
 
 **Note:**
-For this Teched exercise, we have already deployed the Source XSA Application to SAP BTP Cockpit (Role Collection Source_XSA has to be assigned to access this URL).
+For this Teched exercise, we have already deployed the Source XSA Application to SAP BTP Cockpit (Role Collection `Teched-AD268` has to be assigned to access this URL).
 
 App URL- https://sap-teched-2023-ad268-b6cxf9xc-ad268-app.cfapps.ap11.hana.ondemand.com/launchpad/index.html
 
