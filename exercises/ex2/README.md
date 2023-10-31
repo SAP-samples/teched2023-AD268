@@ -47,7 +47,7 @@ The next step of the exercise is to execute the script and pass the necessary pa
    - **Container Folder**: Based on the number of containers, we have to pass the folder names of these containers.
    - **App Module Folder**: This is the name of the app module in the source XSA application.
 
-<br>![](/exercises/ex2/images/parameters.png)
+   <br>![](/exercises/ex2/images/parameters.png)
 
 ## Summary
 
