@@ -426,7 +426,7 @@ Ensure to replace the placeholder < UserID > with your Group number and ` < Hana
    	- The route `/country/country.xsjs` will need to be updated to `/v2/teched/createcountry` within the `app/resources/tiny-ui/Util.js` file.
    	- Similarly, `/user/xsodata/user.xsodata/Users` should be substituted with `/teched/Users` in the `app/resources/user-ui/view/usercrud.controller.js` file.
 
-	You can either simplify the process by replacing the existing app folder with the prepared [app](../target_cap_app/app/) folder which already houses all the required modifications for this specific demo application or you can manually make these changes as below
+	You can either simplify the process by replacing the existing app folder with the prepared [target_cap_app/app](../target_cap_app/app/) folder which already houses all the required modifications for this specific demo application or you can manually make these changes as below
 
   	- Modify the `app/xs-app.json` file as below. The changes in this file ensure that the new service routes are recognized by the application and that authentication is properly configured.
   	  ```
