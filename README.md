@@ -37,7 +37,7 @@ The requirements to follow the exercises in this repository are
 - [Exercise 4 - Manually migrate the Data from Source HDI Container to target HDI Container](exercises/ex4/)
     - [Exercise 4.1 - Add the Databases and HDI containers in the Database Explorer](exercises/ex4#exercise-41---add-the-databases-and-hdi-containers-in-the-database-explorer)
     - [Exercise 4.2 - Run the SQL commands](exercises/ex4#exercise-42---run-the-sql-commands)
-    - [Exercise 4.3 - Add the Role collection and Test the CAP application (Optional)](exercises/ex4#exercise-43---add-the-role-collection-and-test-the-cap-application)
+    - [Exercise 4.3 - Add the Role collection and Test the CAP application (Optional)](exercises/ex4#exercise-43---add-the-role-collection-and-test-the-cap-application-optional)
 - [Exercise 5 - Perform the Clean Up Operations](exercises/ex5/)
     - [Exercise 5.1 - Clean Up in Database Explorer](exercises/ex5#exercise-51---clean-up-in-database-explorer)
     - [Exercise 5.2 - Clean Up in Business Application Studio](exercises/ex5#exercise-52---clean-up-in-business-application-studio)

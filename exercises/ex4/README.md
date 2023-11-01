@@ -53,7 +53,7 @@ The next step of the exercise is to run the SQL commands in the console to creat
    DROP TABLE #PRIVILEGES; 
    ```
    Replace the placeholders ` < UserID > ` with Group number, ` < HaaS Tinyworld schema > ` with the schema of the Source tinyworld schema in the Hana Service Database and ` < HaaS user schema > ` with the schema of the Source user schema in the Hana Service Database which is available in the [Getting Started](../ex0/README.md) section.
-   **Note:** The values for these placeholders are Not the one's you copied previously.
+   (**Note:** The values for these placeholders are Not the one's you copied previously.)
    After replacing the values, click on the Run Button to execute the commands.
 
 3.	Next right Click on the HanaCloud Database and Select Open SQL Console.
