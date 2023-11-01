@@ -11,10 +11,12 @@ The First step of the exercise is to add the Databases and HDI containers in the
 2. Enter `tdct3ched1-platform` and Select the alternate IDP.
 <br>![](/exercises/ex4/images/DBIDP.png)
 
-3. Click on + button. Select the Instance Type as `SAP HANA Database`. Enter the Host as `zeus.hana.prod.ap-southeast-1.whitney.dbaas.ondemand.com`, Select the Identifier as Port number and enter the value `22325` for SAP Hana Service Database. Enter the SAP Hana Service Database username and password. Slect the checkbox for `Save password (stored in the SAP HANA secure store)` and `Connect to the database securely using TLS/SSL (prevents data eavesdropping)` and Uncheck the `Verify the server's certificate using the trusted certificate below` checkbox. Change the Display name to 'HanaService' and Click on OK.
+**Note:** If a Pop Up is displayed after the explorer opens, Select **No**.
+
+3. Click on + button. Select the Instance Type as `SAP HANA Database`. Enter the Host as `zeus.hana.prod.ap-southeast-1.whitney.dbaas.ondemand.com`, Select the Identifier as Port number and enter the value `22325` for SAP Hana Service Database. Enter the SAP Hana Service Database username and password. Select the checkbox for `Save password (stored in the SAP HANA secure store)` and `Connect to the database securely using TLS/SSL (prevents data eavesdropping)` and Uncheck the `Verify the server's certificate using the trusted certificate below` checkbox. Change the Display name to 'HanaService' and Click on OK.
 <br>![](/exercises/ex4/images/HaaSDB.png)
 
-4. Click on + button again. Select the Instance Type as `SAP HANA Database`. Enter the Host as `aff1e6fd-3b13-4882-8c68-4fc9077e9976.hana.prod-ap11.hanacloud.ondemand.com`, Select the Identifier as Port number and enter the value `443` for SAP Hana Cloud Database. Enter the SAP Hana Cloud Database username and password. Slect the checkbox for `Save password (stored in the SAP HANA secure store)` and `Connect to the database securely using TLS/SSL (prevents data eavesdropping)` and Uncheck the `Verify the server's certificate using the trusted certificate below` checkbox. Change the Display name to 'HanaCloud' and Click on OK.
+4. Click on + button again. Select the Instance Type as `SAP HANA Database`. Enter the Host as `aff1e6fd-3b13-4882-8c68-4fc9077e9976.hana.prod-ap11.hanacloud.ondemand.com`, Select the Identifier as Port number and enter the value `443` for SAP Hana Cloud Database. Enter the SAP Hana Cloud Database username and password. Select the checkbox for `Save password (stored in the SAP HANA secure store)` and `Connect to the database securely using TLS/SSL (prevents data eavesdropping)` and Uncheck the `Verify the server's certificate using the trusted certificate below` checkbox. Change the Display name to 'HanaCloud' and Click on OK.
 <br>![](/exercises/ex4/images/HanaCloudDB.png)
 
 5. Click on + button, In the dropdown select HDI Container. Select your respective Org and Space. Select the First HDI container and Click on OK.
@@ -23,10 +25,10 @@ The First step of the exercise is to add the Databases and HDI containers in the
 6. Repeat the steps for the second HDI container. At the end, Your database explorer should have these.
 <br>![](/exercises/ex4/images/EndResult.png)
 
-7. Expand the tiny-cap-container and Click on Tables. Open any one table by Double clicking on it. You should see the schema value on the right. Copy it.
+7. Expand the tiny-cap-container and Click on Tables. Open any one table by Double clicking on it. You should see the schema value on the right. Copy and Save it.
 <br>![](/exercises/ex4/images/Tiny.png)
 
-8. Repeat the same for user-cap-container and copy the schema value.
+8. Repeat the same for user-cap-container and copy and save the schema value.
 <br>![](/exercises/ex4/images/User.png)
 
 ## Exercise 4.2 - Run the SQL commands
@@ -34,7 +36,7 @@ The First step of the exercise is to add the Databases and HDI containers in the
 The next step of the exercise is to run the SQL commands in the console to create a remote source, virtual tables and then to migrate data.
 
 1.	First right Click on the HanaService Database and Select Open SQL Console.
-<br>![](/exercises/ex2/images/SQL_HaaS.png)
+<br>![](/exercises/ex4/images/SQL_HaaS.png)
 
 2. Next is to create a Remote source user and assign the necessary privileges in the Hana Service Database. Run the below SQL script in the console.
    ```
@@ -50,10 +52,12 @@ The next step of the exercise is to run the SQL commands in the console to creat
    CALL _SYS_DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES('<HaaS user schema>', #PRIVILEGES, _SYS_DI.T_NO_PARAMETERS, ?, ?, ?); 
    DROP TABLE #PRIVILEGES; 
    ```
-   Replace the placeholders ` < UserID > ` with Group number, ` < HaaS Tinyworld schema > ` with the schema of the tinyworld schema in the Hana Service Database and ` < HaaS user schema > ` with the schema of the user schema in the Hana Service Database which is available in the [Getting Started](../ex0/README.md) section.
+   Replace the placeholders ` < UserID > ` with Group number, ` < HaaS Tinyworld schema > ` with the schema of the Source tinyworld schema in the Hana Service Database and ` < HaaS user schema > ` with the schema of the Source user schema in the Hana Service Database which is available in the [Getting Started](../ex0/README.md) section.
+   **Note:** The values for these placeholders are Not the one's you copied previously.
+   After replacing the values, click on the Run Button to execute the commands.
 
 3.	Next right Click on the HanaCloud Database and Select Open SQL Console.
-<br>![](/exercises/ex2/images/SQL_HC.png)
+<br>![](/exercises/ex4/images/SQL_HC.png)
 
 4. Assign the privileges in the Hana Cloud Database by running the below SQL script in the second console.
    ```
@@ -88,7 +92,8 @@ The next step of the exercise is to run the SQL commands in the console to creat
    CALL <Hana Cloud user schema>#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (#PRIVILEGES, _SYS_DI.T_NO_PARAMETERS,?,?,?); 
    DROP TABLE #PRIVILEGES;
    ```
-   Replace the placeholders ` < Hana Cloud Tinyworld schema > ` with the value of the tinyworld schema and ` < Hana Cloud user schema > ` with the value of the user schema copied in the previous step.
+   Replace the placeholders ` < Hana Cloud Tinyworld schema > ` with the value of the target tinyworld schema and ` < Hana Cloud user schema > ` with the value of the target user schema copied in the previous step.
+   After replacing the placeholders, Click on the Run button to execute the commands.
 
 5. Next, In the Hana Cloud console, run the below SQL script to create the Remote source, Virtual tables and insert the data through the virtual tables.
    ```
@@ -133,8 +138,9 @@ The next step of the exercise is to run the SQL commands in the console to creat
    FROM "<Hana Cloud user schema>"."USERDATA_USER_VIR"; 
    ```
    Make sure to Replace the placeholders with their respective values before you run the script.
+   After replacing the placeholders, Click on the Run button to execute the commands.
 
-## Exercise 4.3 - Add the Role collection and Test the CAP application
+## Exercise 4.3 - Add the Role collection and Test the CAP application (Optional)
 
 The last step of the exercise is to create the role collection, assign it to your user and then test the deployed cap application.
 
@@ -159,7 +165,7 @@ The last step of the exercise is to create the role collection, assign it to you
    cf a
    ```
 
-8. Copy and Launch the Application URL in a new browser tab and Test the application.
+8. Copy and Launch the UI Application URL (e.g. techedcapapp_< UserID >) in a new browser tab and Test the application. Note: If there is an Option to select the IDP, Choose the `tdct3ched1.accounts.ondemand.com` IDP.
 <br>![](/exercises/ex4/images/CAPApp.png)
 
 

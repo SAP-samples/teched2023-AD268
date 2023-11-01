@@ -422,10 +422,7 @@ Ensure to replace the placeholder < UserID > with your Group number and ` < Hana
      module.exports = { createCountry };
      ```
 
-5. In our current script, the application layer primarily requires updates to the routes to align with the newly defined services for accessing the API endpoints. For instance, in this scenario:
-   	- The route `/country/country.xsjs` will need to be updated to `/v2/teched/createcountry` within the `app/resources/tiny-ui/Util.js` file.
-   	- Similarly, `/user/xsodata/user.xsodata/Users` should be substituted with `/teched/Users` in the `app/resources/user-ui/view/usercrud.controller.js` file.
-
+5. In our current script, the application layer primarily requires updates to the routes to align with the newly defined services for accessing the API endpoints.
 	You can either simplify the process by replacing the existing app folder with the prepared [target_cap_app/app](../target_cap_app/app/) folder which already houses all the required modifications for this specific demo application or you can manually make these changes as below
 
   	- Modify the `app/xs-app.json` file as below. The changes in this file ensure that the new service routes are recognized by the application and that authentication is properly configured.
@@ -462,8 +459,8 @@ Ensure to replace the placeholder < UserID > with your Group number and ` < Hana
       		}
   	   }
    	   ```
-     - Modify the routes in `user-ui/view/usercrud.controller.js` file. Copy the content of this [usercrud.controller.js](../target_cap_app/app/resources/user-ui/view/usercrud.controller.js) file here. This modification ensures that our User interface communicates with the correct endpoint in the service layer.
-     - Modify the routes in `tiny-ui/Util.js` file. Copy the content of this [Util.js](../target_cap_app/app/resources/tiny-ui/Util.js) file here. The modification here ensures that the TinyUI communicates correctly with the new service endpoints.
+     - The route `/user/xsodata/user.xsodata/Users` should be substituted with `/teched/Users` in `app/user-ui/view/usercrud.controller.js` file. Copy the content of this [usercrud.controller.js](../target_cap_app/app/resources/user-ui/view/usercrud.controller.js) file here. This modification ensures that our User interface communicates with the correct endpoint in the service layer.
+     - Similarly, the route `/country/country.xsjs` will need to be updated to `/v2/teched/createcountry` within the `app/resources/tiny-ui/Util.js` file. Copy the content of this [Util.js](../target_cap_app/app/resources/tiny-ui/Util.js) file here. The modification here ensures that the TinyUI communicates correctly with the new service endpoints.
      - Modify the routes in `tiny-ui/index.html` file. Copy the content of this [index.html](../target_cap_app/app/resources/tiny-ui/index.html) file here. This adjustment ensures that the frontend route references align with the updated service routes.
 
 6. Delete the `.hdbtabledata` and `csv` files if any in the `db/src/data` and `db1/src/data` folders. We do not need them as it will already be deployed to the Source container and having them here might lead to duplicate entries during data migration.

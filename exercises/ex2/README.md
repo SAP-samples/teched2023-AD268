@@ -42,12 +42,15 @@ The next step of the exercise is to execute the script and pass the necessary pa
 
    Parameters required here are:
    - **CAP Application**: This is the path of the CAP application folder. A new folder can be created in the `projects` folder and the path of this folder can be passed here. (e.g. `/home/user/projects/cap_app`)
-   - **Source XSA Application**: This is the path of the Source XSA application folder.
-   - **Container Number**: This is the number of the containers in the project.
-   - **Container Folder**: Based on the number of containers, we have to pass the folder names of these containers.
-   - **App Module Folder**: This is the name of the app module in the source XSA application.
+   - **Source XSA Application**: This is the path of the Source XSA application folder. (e.g `/home/user/projects/teched2023-AD268/teched2023-AD268/exercises/source_xsa_app`)
+   - **Container Number**: This is the number of the containers in the project. (e.g. `2`)
+   - **Container Folder**: Based on the number of containers, we have to pass the folder names of these containers. (e.g. `tiny-db` and `user-db`)
+   - **App Module Folder**: This is the name of the app module in the source XSA application. (e.g. `app`)
 
    <br>![](/exercises/ex2/images/parameters.png)
+
+3. Once the script runs successfully, the console will display the following
+   <br>![](/exercises/ex2/images/ScriptSuccess.png)
 
 ## Summary
 
