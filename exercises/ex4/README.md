@@ -11,7 +11,7 @@ The First step of the exercise is to add the Databases and HDI containers in the
 2. Enter `tdct3ched1-platform` and Select the alternate IDP.
 <br>![](/exercises/ex4/images/DBIDP.png)
 
-**Note:** If a Pop Up is displayed after the explorer opens, Select **No**.
+   **Note:** If a Pop Up is displayed after the explorer opens, Select **No**.
 
 3. Click on + button. Select the Instance Type as `SAP HANA Database`. Enter the Host as `zeus.hana.prod.ap-southeast-1.whitney.dbaas.ondemand.com`, Select the Identifier as Port number and enter the value `22325` for SAP Hana Service Database. Enter the SAP Hana Service Database username and password. Select the checkbox for `Save password (stored in the SAP HANA secure store)` and `Connect to the database securely using TLS/SSL (prevents data eavesdropping)` and Uncheck the `Verify the server's certificate using the trusted certificate below` checkbox. Change the Display name to 'HanaService' and Click on OK.
 <br>![](/exercises/ex4/images/HaaSDB.png)
