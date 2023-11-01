@@ -41,7 +41,7 @@ The requirements to follow the exercises in this repository are
 - [Exercise 5 - Perform the Clean Up Operations](exercises/ex5/)
     - [Exercise 5.1 - Clean Up in Database Explorer](exercises/ex5#exercise-51---clean-up-in-database-explorer)
     - [Exercise 5.2 - Clean Up in Business Application Studio](exercises/ex5#exercise-52---clean-up-in-business-application-studio)
-    - [Exercise 5.3 - Clean Up in SAP BTP Subaccount Cockpit](exercises/ex5#exercise-53---clean-up-in-sap-btp-subaccount-cockpit)
+    - [Exercise 5.3 - Clean Up in SAP BTP Subaccount Cockpit (Optional)](exercises/ex5#exercise-53---clean-up-in-sap-btp-subaccount-cockpit-optional)
 
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.

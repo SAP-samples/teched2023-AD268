@@ -86,7 +86,7 @@ In this step, we will undeploy the mta application and delete the Business Appli
 
 4. Click on the Delete button and Confirm the deletion by click on Delete in the popup. The dev space will be deleted.
 
-## Exercise 5.3 - Clean Up in SAP BTP Subaccount Cockpit
+## Exercise 5.3 - Clean Up in SAP BTP Subaccount Cockpit (Optional)
 
 Last step of this exercise is to delete the Role collection.
 
