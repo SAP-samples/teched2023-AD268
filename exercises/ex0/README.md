@@ -16,8 +16,8 @@ In the SAP BTP Cockpit, you will only see the subaccount that is relevant for yo
 
 | Application | User ID | Password | URL/GUID |
 |---|---|---|---|
-| SAP Hana as a Service | SYSTEMTEST | coming soon | 8ee195b7-1320-4c5a-9324-f029b08eb0c1 |
-| SAP Hana Cloud | DBADMINTEST | coming soon | aff1e6fd-3b13-4882-8c68-4fc9077e9976 |
+| SAP Hana as a Service | SYSTEMTEST | Hana4TechEd | 8ee195b7-1320-4c5a-9324-f029b08eb0c1 |
+| SAP Hana Cloud | DBADMINTEST | Hana4TechEd | aff1e6fd-3b13-4882-8c68-4fc9077e9976 |
 
 
 ## Additional Information
