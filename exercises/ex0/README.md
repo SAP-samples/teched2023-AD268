@@ -14,6 +14,8 @@ Please replace the _**XXX**_ in the user name with your place number (e.g. AD268
 
 In the SAP BTP Cockpit, you will only see the subaccount that is relevant for you, based on your place number.
 
+Password: `Acce$$teched23`
+
 | Application | User ID | Password | URL/GUID |
 |---|---|---|---|
 | SAP Hana as a Service | SYSTEMTEST | Hana4TechEd | 8ee195b7-1320-4c5a-9324-f029b08eb0c1 |
